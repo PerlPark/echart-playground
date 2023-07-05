@@ -1,6 +1,6 @@
 'use client';
 
-import LineChart from '@/components/LineChart';
+import BarChart from '@/components/BarChart';
 import { useState } from 'react';
 
 function rand(min: number, max: number) {
@@ -11,7 +11,7 @@ function createData(hasMinMax: boolean) {
   const newData = Array.from({ length: 7 }, () => rand(0, 300));
   return {
     data: newData,
-    type: 'line',
+    type: 'bar',
     markPoint: {
       data: hasMinMax
         ? [
@@ -23,7 +23,7 @@ function createData(hasMinMax: boolean) {
   };
 }
 
-export default function Home() {
+export default function Bar() {
   const [visualMap, setVisualMap] = useState(false);
   const [markArea, setMarkArea] = useState(false);
   const [minMax, setMinMax] = useState(false);
@@ -104,7 +104,7 @@ export default function Home() {
           </button>
         </li>
       </ul>
-      <LineChart data={dummyData} visualMap={visualMap} markArea={markArea} />
+      <BarChart data={dummyData} visualMap={visualMap} markArea={markArea} />
     </div>
   );
 }

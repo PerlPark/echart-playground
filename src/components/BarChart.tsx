@@ -8,11 +8,47 @@ type Props = {
     data: number[];
     type: string;
   }[];
+  visualMap: boolean;
+  markArea: boolean;
 };
 
-const BarChart = ({ data }: Props) => {
+const BarChart = ({ data, visualMap, markArea }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
+
+  const visualMapObj = useMemo(
+    () =>
+      visualMap
+        ? {
+            visualMap: {
+              show: false,
+              dimension: 0,
+              pieces: [
+                {
+                  lte: 1,
+                  color: '#F35E07',
+                },
+                {
+                  gt: 1,
+                  lte: 3,
+                  color: '#93CE07',
+                },
+                {
+                  gt: 3,
+                  lte: 5,
+                  color: '#F35E07',
+                },
+                {
+                  gt: 5,
+                  lte: 6,
+                  color: '#93CE07',
+                },
+              ],
+            },
+          }
+        : {},
+    [visualMap]
+  );
 
   // --------------
   const chartOption = useMemo(
@@ -25,9 +61,42 @@ const BarChart = ({ data }: Props) => {
       yAxis: {
         type: 'value',
       },
-      series: data,
+      ...visualMapObj,
+      series: [
+        {
+          type: 'bar',
+          markArea: {
+            itemStyle: {
+              color: 'rgba(255, 173, 177, 0.4)',
+            },
+            data: markArea
+              ? [
+                  [
+                    {
+                      name: 'Morning Peak',
+                      xAxis: 'Mon',
+                    },
+                    {
+                      xAxis: 'Tue',
+                    },
+                  ],
+                  [
+                    {
+                      name: 'Evening Peak',
+                      xAxis: 'Thu',
+                    },
+                    {
+                      xAxis: 'Sat',
+                    },
+                  ],
+                ]
+              : [],
+          },
+        },
+        ...data,
+      ],
     }),
-    [data]
+    [data, markArea, visualMapObj]
   );
 
   useEffect(() => {
@@ -37,7 +106,8 @@ const BarChart = ({ data }: Props) => {
   }, []);
 
   useEffect(() => {
-    echartRef.current?.setOption(chartOption);
+    console.log(chartOption);
+    echartRef.current?.setOption(chartOption, true);
   }, [chartOption]);
 
   return <div className="w-full h-5/6" ref={chartRef}></div>;
