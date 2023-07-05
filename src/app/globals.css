@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-weight: 45 920;
+  font-family: 'Pretendard Variable';
+  font-display: swap;
+  font-style: normal;
+  src: local('Pretendard Variable'),
+    url('/fonts/PretendardVariable.woff2') format('woff2-variations');
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+}
