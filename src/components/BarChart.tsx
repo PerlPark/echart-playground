@@ -9,10 +9,9 @@ type Props = {
     type: string;
   }[];
   visualMap: boolean;
-  markArea: boolean;
 };
 
-const BarChart = ({ data, visualMap, markArea }: Props) => {
+const BarChart = ({ data, visualMap }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
 
@@ -62,41 +61,9 @@ const BarChart = ({ data, visualMap, markArea }: Props) => {
         type: 'value',
       },
       ...visualMapObj,
-      series: [
-        {
-          type: 'bar',
-          markArea: {
-            itemStyle: {
-              color: 'rgba(255, 173, 177, 0.4)',
-            },
-            data: markArea
-              ? [
-                  [
-                    {
-                      name: 'Morning Peak',
-                      xAxis: 'Mon',
-                    },
-                    {
-                      xAxis: 'Tue',
-                    },
-                  ],
-                  [
-                    {
-                      name: 'Evening Peak',
-                      xAxis: 'Thu',
-                    },
-                    {
-                      xAxis: 'Sat',
-                    },
-                  ],
-                ]
-              : [],
-          },
-        },
-        ...data,
-      ],
+      series: data,
     }),
-    [data, markArea, visualMapObj]
+    [data, visualMapObj]
   );
 
   useEffect(() => {
