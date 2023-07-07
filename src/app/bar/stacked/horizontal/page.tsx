@@ -36,7 +36,10 @@ function createData(hasMinMax: boolean, type: string, index: number) {
 
 export default function Bar() {
   const { toggleVisualMap, visualMap } = useCommonOptions();
-  const [dummyData, setDummyData] = useState([createData(false, 'bar', 1)]);
+  const [dummyData, setDummyData] = useState([
+    createData(false, 'bar', 1),
+    createData(false, 'bar', 2),
+  ]);
 
   const addData = (type: string) => {
     setDummyData((v) => [...v, createData(false, type, v.length + 1)]);
