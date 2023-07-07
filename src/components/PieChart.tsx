@@ -7,11 +7,45 @@ type Props = {
   donut: boolean;
   borderRadius: number;
   borderWidth: number;
+  emphasisLabel: boolean;
 };
 
-const PieChart = ({ donut, borderRadius, borderWidth }: Props) => {
+const PieChart = ({
+  donut,
+  borderRadius,
+  borderWidth,
+  emphasisLabel,
+}: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
+
+  const emphasisLabelObj = useMemo(
+    () =>
+      emphasisLabel
+        ? {
+            label: {
+              show: false,
+              position: 'center',
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold',
+              },
+            },
+          }
+        : {
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+          },
+    [emphasisLabel]
+  );
 
   // --------------
   const chartOption = useMemo(
@@ -41,17 +75,11 @@ const PieChart = ({ donut, borderRadius, borderWidth }: Props) => {
             { value: 484, name: 'Union Ads' },
             { value: 300, name: 'Video Ads' },
           ],
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
+          ...emphasisLabelObj,
         },
       ],
     }),
-    [borderRadius, borderWidth, donut]
+    [borderRadius, borderWidth, donut, emphasisLabelObj]
   );
 
   useEffect(() => {
