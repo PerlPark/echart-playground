@@ -11,7 +11,7 @@ type Props = {
   visualMap: boolean;
 };
 
-const BarChart = ({ data, visualMap }: Props) => {
+const BarChartHorizontal = ({ data, visualMap }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
 
@@ -21,6 +21,7 @@ const BarChart = ({ data, visualMap }: Props) => {
         ? {
             visualMap: {
               show: false,
+              dimension: 0,
               pieces: [
                 { min: 0, max: 270, color: '#93CE07' },
                 { min: 270, maxOpen: true, color: '#F35E07' },
@@ -35,12 +36,12 @@ const BarChart = ({ data, visualMap }: Props) => {
   const chartOption = useMemo(
     () => ({
       xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        type: 'value',
       },
       tooltip: { trigger: 'axis' },
       yAxis: {
-        type: 'value',
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       },
       ...visualMapObj,
       series: data,
@@ -62,4 +63,4 @@ const BarChart = ({ data, visualMap }: Props) => {
   return <div className="w-full h-5/6" ref={chartRef}></div>;
 };
 
-export default BarChart;
+export default BarChartHorizontal;

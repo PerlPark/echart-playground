@@ -1,6 +1,7 @@
 'use client';
 
 import LineChart from '@/components/LineChart';
+import useCommonOptions from '@/useCommonOptions';
 import { useState } from 'react';
 
 function rand(min: number, max: number) {
@@ -24,25 +25,17 @@ function createData(hasMinMax: boolean) {
 }
 
 export default function Home() {
-  const [visualMap, setVisualMap] = useState(false);
-  const [markArea, setMarkArea] = useState(false);
-  const [minMax, setMinMax] = useState(false);
-  const [dummyData, setDummyData] = useState([createData(false)]);
+  const { toggleVisualMap, visualMap, toggleMinMax, minMax } =
+    useCommonOptions();
 
+  const [dummyData, setDummyData] = useState([createData(false)]);
   const addData = () => {
     setDummyData((v) => [...v, createData(minMax)]);
   };
 
-  const toggleVisualMap = () => {
-    setVisualMap((v) => !v);
-  };
-
+  const [markArea, setMarkArea] = useState(false);
   const toggleMarkArea = () => {
     setMarkArea((v) => !v);
-  };
-
-  const toggleMinMax = () => {
-    setMinMax((v) => !v);
   };
 
   return (

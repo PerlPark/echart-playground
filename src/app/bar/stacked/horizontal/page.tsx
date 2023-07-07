@@ -1,6 +1,7 @@
 'use client';
 
 import BarChart from '@/components/BarChart';
+import BarChartHorizontal from '@/components/BarChartHorizontal';
 import useCommonOptions from '@/useCommonOptions';
 import { useState } from 'react';
 
@@ -14,8 +15,12 @@ function createData(hasMinMax: boolean, type: string, index: number) {
   return {
     name: `data ${index}`,
     data: newData,
+    stack: type === 'line' ? 'line' : 'total',
     label: {
       show: true,
+    },
+    emphasis: {
+      focus: 'series',
     },
     type: type,
     markPoint: {
@@ -30,12 +35,11 @@ function createData(hasMinMax: boolean, type: string, index: number) {
 }
 
 export default function Bar() {
-  const { toggleVisualMap, visualMap, toggleMinMax, minMax } =
-    useCommonOptions();
+  const { toggleVisualMap, visualMap } = useCommonOptions();
   const [dummyData, setDummyData] = useState([createData(false, 'bar', 1)]);
 
   const addData = (type: string) => {
-    setDummyData((v) => [...v, createData(minMax, type, v.length + 1)]);
+    setDummyData((v) => [...v, createData(false, type, v.length + 1)]);
   };
 
   return (
@@ -75,23 +79,8 @@ export default function Bar() {
             색상 일부분 바꾸기
           </button>
         </li>
-        <li>
-          <button
-            type="button"
-            onClick={toggleMinMax}
-            className="bg-slate-600 text-white h-10 shadow rounded"
-          >
-            <input
-              type="checkbox"
-              onChange={toggleMinMax}
-              readOnly={false}
-              checked={minMax}
-            />{' '}
-            최소/최대 포인트 추가
-          </button>
-        </li>
       </ul>
-      <BarChart data={dummyData} visualMap={visualMap} />
+      <BarChartHorizontal data={dummyData} visualMap={visualMap} />
     </div>
   );
 }
