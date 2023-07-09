@@ -36,7 +36,7 @@ const Sidebar = () => {
           Pie
         </li>
         <li>
-          <Link href="/bar">Default</Link>
+          <Link href="/pie">Default</Link>
         </li>
         <li className={categoryStyle}>
           <CandlestickChartIcon />
