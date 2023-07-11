@@ -3,25 +3,23 @@ import LineChartIcon from './icons/LineChartIcon';
 import BarChartIcon from './icons/BarChartIcon';
 import PieChartIcon from './icons/PieChartIcon';
 import CandlestickChartIcon from './icons/CandlestickChartIcon';
-
-const categoryStyle =
-  'flex hover:bg-slate-50 bg-white rounded shadow-sm px-2.5 py-2 gap-3 items-center mt-6 [&_+_li]:mt-3 list-none -ml-2';
+import CategoryListItem from './CategoryListItem';
 
 const Sidebar = () => {
   return (
     <nav>
       <ul className="[&_li]:mb-1 [&_li]:list-disc [&_li]:list-inside ml-2">
-        <li className={categoryStyle}>
+        <CategoryListItem>
           <LineChartIcon />
           Line
-        </li>
+        </CategoryListItem>
         <li>
           <Link href="/">Default</Link>
         </li>
-        <li className={categoryStyle}>
+        <CategoryListItem>
           <BarChartIcon />
           Bar
-        </li>
+        </CategoryListItem>
         <li>
           <Link href="/bar">Default</Link>
         </li>
@@ -31,17 +29,17 @@ const Sidebar = () => {
         <li>
           <Link href="/bar/stacked/horizontal">Stacked - Horizontal</Link>
         </li>
-        <li className={categoryStyle}>
+        <CategoryListItem>
           <PieChartIcon />
           Pie
-        </li>
+        </CategoryListItem>
         <li>
           <Link href="/pie">Default</Link>
         </li>
-        <li className={categoryStyle}>
+        <CategoryListItem>
           <CandlestickChartIcon />
           Candlestick
-        </li>
+        </CategoryListItem>
         <li>
           <Link href="/bar">Default</Link>
         </li>
