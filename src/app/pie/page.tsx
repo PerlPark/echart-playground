@@ -14,8 +14,8 @@ export default function Bar() {
     setEmphasisLabel((v) => !v);
   };
 
-  const [radius, setRadius] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [borderRadius, setBorderRadius] = useState(0);
+  const [borderWidth, setBoardWidth] = useState(0);
 
   return (
     <div className="w-full h-full">
@@ -52,34 +52,36 @@ export default function Bar() {
           </button>
         </li>
         <li>
-          Radius{' '}
+          <span className="font-medium">Border Radius</span>
           <input
             type="number"
-            className="border rounded h-10 px-3 w-32"
+            className="border rounded h-10 px-3 w-20 ml-2"
             defaultValue={0}
+            min={0}
             step={2}
             onChange={(e) => {
-              setRadius(Number(e.target.value));
+              setBorderRadius(Number(e.target.value));
             }}
           />
         </li>
         <li>
-          Width{' '}
+          <span className="font-medium">Border Width</span>
           <input
             type="number"
-            className="border rounded h-10 px-3 w-32"
+            className="border rounded h-10 px-3 w-20 ml-2"
             defaultValue={0}
             step={2}
+            min={0}
             onChange={(e) => {
-              setWidth(Number(e.target.value));
+              setBoardWidth(Number(e.target.value));
             }}
           />
         </li>
       </ul>
       <PieChart
         donut={donut}
-        borderRadius={radius}
-        borderWidth={width}
+        borderRadius={borderRadius}
+        borderWidth={borderWidth}
         emphasisLabel={emphasisLabel}
       />
     </div>
