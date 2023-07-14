@@ -41,7 +41,8 @@ const Sidebar = () => {
           Candlestick
         </CategoryListItem>
         <li>
-          <Link href="/bar">Default</Link>
+          <Link href="/candlestick">Default</Link>
+        </li>
         </li>
       </ul>
     </nav>
