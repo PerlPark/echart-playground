@@ -43,6 +43,8 @@ const Sidebar = () => {
         <li>
           <Link href="/candlestick">Default</Link>
         </li>
+        <li>
+          <Link href="/candlestick/index">Index Chart</Link>
         </li>
       </ul>
     </nav>
