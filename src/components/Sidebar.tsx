@@ -46,6 +46,9 @@ const Sidebar = () => {
         <li>
           <Link href="/candlestick/index">Index Chart</Link>
         </li>
+        <li>
+          <Link href="/candlestick/index/minimal">Index Chart - Minimal</Link>
+        </li>
       </ul>
     </nav>
   );
