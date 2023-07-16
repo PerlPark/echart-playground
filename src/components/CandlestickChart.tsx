@@ -3,9 +3,24 @@
 import * as echarts from 'echarts';
 import { useEffect, useMemo, useRef } from 'react';
 
-type Props = {};
+type Props = {
+  median: boolean;
+};
 
-const CandlestickChart = ({}: Props) => {
+const xAxis = ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27'];
+
+const data = [
+  [20, 34, 10, 38],
+  [40, 35, 30, 50],
+  [31, 38, 33, 44],
+  [38, 15, 5, 42],
+];
+
+const getScatterData = () => {
+  return data.map(([a, b], idx) => [xAxis[idx], (a + b) / 2]);
+};
+
+const CandlestickChart = ({ median }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
 
@@ -13,7 +28,7 @@ const CandlestickChart = ({}: Props) => {
   const chartOption = useMemo(
     () => ({
       xAxis: {
-        data: ['2017-10-24', '2017-10-25', '2017-10-26', '2017-10-27'],
+        data: xAxis,
       },
       yAxis: {},
       tooltip: {
@@ -26,16 +41,21 @@ const CandlestickChart = ({}: Props) => {
         {
           name: '회전율',
           type: 'candlestick',
-          data: [
-            [20, 34, 10, 38],
-            [40, 35, 30, 50],
-            [31, 38, 33, 44],
-            [38, 15, 5, 42],
-          ],
+          data: data,
         },
+        ...(median
+          ? [
+              {
+                name: 'median',
+                symbolSize: 20,
+                type: 'scatter',
+                data: getScatterData(),
+              },
+            ]
+          : []),
       ],
     }),
-    []
+    [median]
   );
 
   useEffect(() => {
