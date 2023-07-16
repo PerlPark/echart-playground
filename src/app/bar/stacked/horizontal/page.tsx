@@ -1,6 +1,5 @@
 'use client';
 
-import BarChart from '@/components/BarChart';
 import BarChartHorizontal from '@/components/BarChartHorizontal';
 import useCommonOptions from '@/useCommonOptions';
 import { useState } from 'react';
