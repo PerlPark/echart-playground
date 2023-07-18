@@ -1,14 +1,10 @@
 'use client';
 
 import CandlestickChart from '@/components/CandlestickChart';
-import { useState } from 'react';
+import useToggle from '@/useToggle';
 
 export default function Candlestick() {
-  const [median, setMedian] = useState(false);
-
-  const toggleMedian = () => {
-    setMedian((v) => !v);
-  };
+  const [median, toggleMedian] = useToggle();
 
   return (
     <div className="w-full h-full">

@@ -1,7 +1,7 @@
 'use client';
 
 import BarChart from '@/components/BarChart';
-import useCommonOptions from '@/useCommonOptions';
+import useToggle from '@/useToggle';
 import { useState } from 'react';
 
 function rand(min: number, max: number) {
@@ -30,8 +30,9 @@ function createData(hasMinMax: boolean, type: string, index: number) {
 }
 
 export default function Bar() {
-  const { toggleVisualMap, visualMap, toggleMinMax, minMax } =
-    useCommonOptions();
+  const [visualMap, toggleVisualMap] = useToggle();
+  const [minMax, toggleMinMax] = useToggle();
+
   const [dummyData, setDummyData] = useState([createData(false, 'bar', 1)]);
 
   const addData = (type: string) => {

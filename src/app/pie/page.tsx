@@ -1,18 +1,12 @@
 'use client';
 
 import PieChart from '@/components/PieChart';
+import useToggle from '@/useToggle';
 import { useState } from 'react';
 
 export default function Bar() {
-  const [donut, setDonut] = useState(false);
-  const toggleDonut = () => {
-    setDonut((v) => !v);
-  };
-
-  const [emphasisLabel, setEmphasisLabel] = useState(false);
-  const toggleEmphasisLabel = () => {
-    setEmphasisLabel((v) => !v);
-  };
+  const [donut, toggleDonut] = useToggle();
+  const [emphasisLabel, toggleEmphasisLabel] = useToggle();
 
   const [borderRadius, setBorderRadius] = useState(0);
   const [borderWidth, setBoardWidth] = useState(0);

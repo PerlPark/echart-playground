@@ -1,14 +1,10 @@
 'use client';
 
 import CandlestickIndexChart from '@/components/CandlestickIndexChart';
-import { useState } from 'react';
+import useToggle from '@/useToggle';
 
 export default function CandlestickIndex() {
-  const [slider, setSlider] = useState(false);
-
-  const toggleSlider = () => {
-    setSlider((v) => !v);
-  };
+  const [slider, toggleSlider] = useToggle();
 
   return (
     <div className="w-full h-full">
