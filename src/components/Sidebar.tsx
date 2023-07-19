@@ -4,6 +4,7 @@ import BarChartIcon from './icons/BarChartIcon';
 import PieChartIcon from './icons/PieChartIcon';
 import CandlestickChartIcon from './icons/CandlestickChartIcon';
 import CategoryListItem from './CategoryListItem';
+import BoxplotChartIcon from './icons/BoxplotChartIcon';
 
 const Sidebar = () => {
   return (
@@ -48,6 +49,13 @@ const Sidebar = () => {
         </li>
         <li>
           <Link href="/candlestick/index/minimal">Index Chart - Minimal</Link>
+        </li>
+        <CategoryListItem>
+          <BoxplotChartIcon />
+          Boxplot
+        </CategoryListItem>
+        <li>
+          <Link href="/boxplot">Default</Link>
         </li>
       </ul>
     </nav>
