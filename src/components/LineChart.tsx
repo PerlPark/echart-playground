@@ -50,43 +50,6 @@ const LineChart = ({ data, visualMap, markArea }: Props) => {
     [visualMap]
   );
 
-  const markAreaObj = useMemo(
-    () =>
-      markArea
-        ? [
-            {
-              type: 'line',
-              markArea: {
-                itemStyle: {
-                  color: 'rgba(255, 173, 177, 0.4)',
-                },
-                data: [
-                  [
-                    {
-                      name: 'Morning Peak',
-                      xAxis: 'Mon',
-                    },
-                    {
-                      xAxis: 'Tue',
-                    },
-                  ],
-                  [
-                    {
-                      name: 'Evening Peak',
-                      xAxis: 'Thu',
-                    },
-                    {
-                      xAxis: 'Sat',
-                    },
-                  ],
-                ],
-              },
-            },
-          ]
-        : [],
-    [markArea]
-  );
-
   // --------------
   const chartOption = useMemo(
     () => ({
