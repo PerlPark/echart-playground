@@ -15,6 +15,7 @@ const Sidebar = () => {
           Line
         </CategoryListItem>
         <LinkListItem href="/">Default</LinkListItem>
+        <LinkListItem href="/line/smooth">Smooth</LinkListItem>
         <CategoryListItem>
           <BarChartIcon />
           Bar
