@@ -32,6 +32,7 @@ export default function LineSmooth() {
   };
 
   const [visualMap, toggleVisualMap] = useToggle();
+  const [markLine, toggleMarkLine] = useToggle();
   const [markArea, toggleMarkArea] = useToggle();
   const [minMax, toggleMinMax] = useToggle();
 
@@ -81,6 +82,21 @@ export default function LineSmooth() {
         <li>
           <button
             type="button"
+            onClick={toggleMarkLine}
+            className="bg-slate-600 text-white h-10 shadow rounded"
+          >
+            <input
+              type="checkbox"
+              onChange={toggleMarkLine}
+              readOnly={false}
+              checked={markLine}
+            />{' '}
+            세로선
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
             onClick={toggleMinMax}
             className="bg-slate-600 text-white h-10 shadow rounded"
           >
@@ -94,7 +110,12 @@ export default function LineSmooth() {
           </button>
         </li>
       </ul>
-      <LineChart data={dummyData} visualMap={visualMap} markArea={markArea} />
+      <LineChart
+        data={dummyData}
+        visualMap={visualMap}
+        markLine={markLine}
+        markArea={markArea}
+      />
     </div>
   );
 }

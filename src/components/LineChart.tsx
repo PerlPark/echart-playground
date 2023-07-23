@@ -9,10 +9,13 @@ type Props = {
     type: string;
   }[];
   visualMap: boolean;
+  markLine: boolean;
   markArea: boolean;
 };
 
-const LineChart = ({ data, visualMap, markArea }: Props) => {
+const xAxis = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+const LineChart = ({ data, visualMap, markLine, markArea }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
 
@@ -55,7 +58,7 @@ const LineChart = ({ data, visualMap, markArea }: Props) => {
     () => ({
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: xAxis,
       },
       tooltip: { trigger: 'axis' },
       yAxis: {
@@ -65,6 +68,15 @@ const LineChart = ({ data, visualMap, markArea }: Props) => {
       series: [
         {
           type: 'line',
+          markLine: {
+            silent: true,
+            symbol: ['none', 'none'],
+            label: { show: false },
+            data: markLine ? [{ xAxis: xAxis.length / 2 - 1 }] : [],
+            lineStyle: {
+              color: '#dddddd',
+            },
+          },
           markArea: {
             itemStyle: {
               color: 'rgba(255, 173, 177, 0.4)',
@@ -96,7 +108,7 @@ const LineChart = ({ data, visualMap, markArea }: Props) => {
         ...data,
       ],
     }),
-    [data, markArea, visualMapObj]
+    [data, markArea, markLine, visualMapObj]
   );
 
   useEffect(() => {
