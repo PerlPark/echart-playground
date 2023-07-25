@@ -7,9 +7,10 @@ import { useEffect, useMemo, useRef } from 'react';
 type Props = {
   data?: Data[];
   dataset?: any;
+  tooltip?: any;
 };
 
-const LineDatasetChart = ({ data, dataset }: Props) => {
+const LineDatasetChart = ({ data, dataset, tooltip }: Props) => {
   const chartRef = useRef(null);
   const echartRef = useRef<echarts.ECharts | null>(null);
 
@@ -19,7 +20,7 @@ const LineDatasetChart = ({ data, dataset }: Props) => {
       xAxis: {
         type: 'category',
       },
-      tooltip: { trigger: 'axis' },
+      tooltip: tooltip ?? { trigger: 'axis' },
       yAxis: {
         show: true,
         axisLabel: {
@@ -35,7 +36,7 @@ const LineDatasetChart = ({ data, dataset }: Props) => {
       series: [...(data || [])],
       ...({ dataset } || []),
     }),
-    [data, dataset]
+    [data, dataset, tooltip]
   );
 
   useEffect(() => {
