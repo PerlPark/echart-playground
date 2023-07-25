@@ -10,6 +10,10 @@ const Sidebar = () => {
   return (
     <nav>
       <ul className="[&_li]:mb-1 [&_li]:list-disc [&_li]:list-inside ml-2">
+        <CategoryListItem>Common</CategoryListItem>
+        <LinkListItem href="/common/custom-tooltip">
+          Custom Tooltip
+        </LinkListItem>
         <CategoryListItem>
           <LineChartIcon />
           Line
