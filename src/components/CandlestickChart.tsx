@@ -65,7 +65,6 @@ const CandlestickChart = ({ median }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log(chartOption);
     echartRef.current?.setOption(chartOption, true);
   }, [chartOption]);
 

@@ -89,7 +89,6 @@ const PieChart = ({
   }, []);
 
   useEffect(() => {
-    console.log(chartOption);
     echartRef.current?.setOption(chartOption, true);
   }, [chartOption]);
 

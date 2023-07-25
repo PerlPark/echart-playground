@@ -17,14 +17,12 @@ const dataset = [
   {
     transform: {
       type: 'filter',
-      print: true,
       config: { dimension: 'year', '=': 2022 },
     },
   },
   {
     transform: {
       type: 'filter',
-      print: true,
       config: { dimension: 'year', '=': 2023 },
     },
   },

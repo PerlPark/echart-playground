@@ -46,7 +46,6 @@ const LineDatasetChart = ({ data, dataset, tooltip }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log(chartOption);
     echartRef.current?.setOption(chartOption, true);
   }, [chartOption]);
 

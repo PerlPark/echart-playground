@@ -56,7 +56,6 @@ const BarChartHorizontal = ({ data, visualMap }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log(chartOption);
     echartRef.current?.setOption(chartOption, true);
   }, [chartOption]);
 
