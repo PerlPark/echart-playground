@@ -42,70 +42,21 @@ export default function CustomTooltip() {
           const arrow = rate > 0 ? '▲' : rate === 0 ? '-' : '▼';
           const diff = thisYearRevenue - lastYearRevenue;
 
-          let message = `지난해 ${month}월 총 매출<br/>${lastYearRevenue.toLocaleString(
+          let message = `지난해 ${month}월 총 매출<br/><strong style="font-weight:600;color:#02FF9A">${lastYearRevenue.toLocaleString(
             'ko-KR'
-          )}원`;
+          )}원</strong>`;
 
           if (obj.length > 1) {
             message =
-              `올해 ${month}월 총 매출<br/>${thisYearRevenue.toLocaleString(
+              `올해 ${month}월 총 매출<br/><strong style="font-weight:600;color:#02FF9A">${thisYearRevenue.toLocaleString(
                 'ko-KR'
-              )}원<br/>${arrow}${diff.toLocaleString('ko-KR')}원 ${rate.toFixed(
-                1
-              )}%<br/><br/>` + message;
+              )}원</strong><br/><strong style="font-weight:600;color:#FF3B30">${arrow}${diff.toLocaleString(
+                'ko-KR'
+              )}원 ${rate.toFixed(1)}%</strong><br/><br/>` + message;
           }
 
           return message;
         })}
-        data={[
-          {
-            type: 'line',
-            datasetIndex: 1,
-            symbol: 'circle',
-            symbolSize: 8,
-            color: '#B0BEC5',
-            encode: {
-              x: 'month',
-              y: 'monthlyRevenue',
-              tooltip: 'monthlyRevenue',
-            },
-            lineStyle: {
-              width: 0.5,
-            },
-            zlevel: 1,
-          },
-          {
-            type: 'line',
-            color: '#FF9A02',
-            datasetIndex: 2,
-            symbol: 'circle',
-            symbolSize: 8,
-            encode: {
-              x: 'month',
-              y: 'monthlyRevenue',
-              tooltip: 'monthlyRevenue',
-            },
-            markLine: {
-              silent: true,
-              symbol: ['none', 'none'],
-              label: { show: false },
-              data: [
-                {
-                  xAxis: 'max',
-                },
-              ],
-              lineStyle: {
-                width: 2,
-                type: 'solid',
-                color: '#BBE2FF',
-              },
-            },
-            lineStyle: {
-              width: 0.5,
-            },
-            zlevel: 1,
-          },
-        ]}
       />
     </div>
   );
