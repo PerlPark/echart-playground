@@ -29,6 +29,7 @@ const Sidebar = () => {
         <LinkListItem href="/bar/stacked/horizontal">
           Stacked - Horizontal
         </LinkListItem>
+        <LinkListItem href="/bar/counting">Counting</LinkListItem>
         <CategoryListItem>
           <PieChartIcon />
           Pie
