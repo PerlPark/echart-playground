@@ -60,7 +60,7 @@ const LineDatasetChart = ({ data, dataset, tooltip }: Props) => {
             color: '#B0BEC5',
           },
           lineStyle: {
-            width: 0.5,
+            width: 0.75,
             color: '#B0BEC5',
           },
           emphasis: {
@@ -84,7 +84,7 @@ const LineDatasetChart = ({ data, dataset, tooltip }: Props) => {
             color: '#FF9A02',
           },
           lineStyle: {
-            width: 0.5,
+            width: 0.75,
             color: '#FF9A02',
           },
           emphasis: {
