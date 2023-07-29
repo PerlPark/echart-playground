@@ -6,7 +6,7 @@ const tooltipConfig = (formatter: Formatter) => ({
   trigger: 'axis',
   formatter: formatter,
   position: function () {
-    return [0, 0];
+    return [0, -50];
   },
   backgroundColor: '#374151',
   textStyle: {

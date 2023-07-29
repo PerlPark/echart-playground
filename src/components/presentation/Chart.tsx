@@ -18,11 +18,10 @@ const Chart = ({ option }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log(option);
-    echartRef.current?.setOption(option, true);
+    echartRef.current?.setOption(option, false);
   }, [option]);
 
-  return <div ref={chartRef} className="h-96"></div>;
+  return <div ref={chartRef} className="h-80"></div>;
 };
 
 export default Chart;
