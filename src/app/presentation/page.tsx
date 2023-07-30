@@ -2,6 +2,9 @@
 
 import Chart from '@/components/presentation/Chart';
 import lineChartOption1 from '@/configs/line1';
+import lineChartOption2 from '@/configs/line2';
+import lineChartOption3 from '@/configs/line3';
+import lineChartOption4 from '@/configs/line4';
 import useToggle from '@/useToggle';
 import { useState } from 'react';
 
@@ -12,8 +15,8 @@ const Presentation = () => {
 
   return (
     <div className="grid grid-cols-3 gap-6 w-full p-8">
-      <div>
-        <div className="flex gap-4 items-center">
+      <div className="border-r">
+        <div className="flex gap-4 items-center h-14">
           <div>
             <label className="flex gap-2 items-center">
               선 1
@@ -46,6 +49,18 @@ const Presentation = () => {
           </div>
         </div>
         <Chart option={lineChartOption1({ isSmooth, color, color2 })} />
+      </div>
+      <div className="border-r">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={lineChartOption2({})} />
+      </div>
+      <div className="border-r">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={lineChartOption3({})} />
+      </div>
+      <div className="border-r">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={lineChartOption4({})} />
       </div>
     </div>
   );
