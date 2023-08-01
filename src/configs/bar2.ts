@@ -1,8 +1,8 @@
 import null2집계중 from '@/utils';
 import tooltipConfig from '@/tooltip';
 
-const rawData1 = [2, 5, 5, 1, null, 3, 4];
-const rawData2 = [3, 4, 6, null, null, 3, 4];
+const rawData1 = [2, 5, 5, 3, 4, 1, null];
+const rawData2 = [3, 4, 6, 3, 4, null, null];
 
 const data1 = null2집계중(rawData1);
 const data2 = null2집계중(rawData2);
@@ -33,7 +33,7 @@ const barChartOption2 = ({ isSmooth = false }: any) => ({
       type: 'bar',
     },
     {
-      data: [2.5, 4.5, 5.5, 3.5, null, 3.5, 4.5],
+      data: [2.5, 4.5, 5.5, 3.5, 4.5, 2, null],
       type: 'line',
       smooth: isSmooth,
       zlevel: 1,
