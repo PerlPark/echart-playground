@@ -21,7 +21,7 @@ const Chart = ({ option }: Props) => {
     echartRef.current?.setOption(option, false);
   }, [option]);
 
-  return <div ref={chartRef} className="h-80"></div>;
+  return <div ref={chartRef} className="h-80 w-full"></div>;
 };
 
 export default Chart;

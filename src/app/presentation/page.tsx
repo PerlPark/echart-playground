@@ -1,6 +1,7 @@
 'use client';
 
 import Chart from '@/components/presentation/Chart';
+import barChartOption1 from '@/configs/bar1';
 import lineChartOption1 from '@/configs/line1';
 import lineChartOption2 from '@/configs/line2';
 import lineChartOption3 from '@/configs/line3';
@@ -61,6 +62,10 @@ const Presentation = () => {
       <div className="border-r">
         <div className="flex gap-4 items-center h-14"></div>
         <Chart option={lineChartOption4({})} />
+      </div>
+      <div className="border-r">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={barChartOption1({})} />
       </div>
     </div>
   );
