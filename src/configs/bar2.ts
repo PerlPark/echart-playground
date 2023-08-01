@@ -1,13 +1,20 @@
-import null2집계중 from '@/utils';
-import tooltipConfig from '@/tooltip';
+import { 집계중List } from '@/utils';
 
-const rawData1 = [2, 5, 5, 3, 4, 1, null];
-const rawData2 = [3, 4, 6, 3, 4, null, null];
+type Params = {
+  isSmooth?: boolean;
+  selectTooltip: (params: any) => void;
+  data1: 집계중List;
+  data2: 집계중List;
+  data3: (number | null)[];
+};
 
-const data1 = null2집계중(rawData1);
-const data2 = null2집계중(rawData2);
-
-const barChartOption2 = ({ isSmooth = false }: any) => ({
+const barChartOption2 = ({
+  isSmooth = false,
+  selectTooltip,
+  data1,
+  data2,
+  data3,
+}: Params) => ({
   xAxis: {
     type: 'category',
     data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
@@ -15,25 +22,28 @@ const barChartOption2 = ({ isSmooth = false }: any) => ({
   yAxis: {
     type: 'value',
   },
-  tooltip: tooltipConfig((obj: any) => {
-    console.log(obj);
-    return `${
-      obj[0].axisValue
-    }<br/><strong style="font-weight:600;color:#02FF9A">${
-      obj[0].data.label ? '집계중입니다.' : obj[0].value ?? '데이터가 없습니다.'
-    }</strong>`;
-  }),
+  legend: {},
+  selectTooltip: selectTooltip,
   series: [
     {
       data: data1,
+      name: '파랑',
       type: 'bar',
+      emphasis: {
+        focus: 'series',
+      },
     },
     {
       data: data2,
+      name: '초록',
       type: 'bar',
+      emphasis: {
+        focus: 'series',
+      },
     },
     {
-      data: [2.5, 4.5, 5.5, 3.5, 4.5, 2, null],
+      data: data3,
+      name: '노랑',
       type: 'line',
       smooth: isSmooth,
       zlevel: 1,

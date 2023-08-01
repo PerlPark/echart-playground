@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as echarts from 'echarts';
 
 type Props = {
@@ -9,17 +9,62 @@ type Props = {
 
 const Chart = ({ option }: Props) => {
   const chartRef = useRef(null);
-  const echartRef = useRef<echarts.ECharts | null>(null);
+  const [echart, setEchart] = useState<echarts.ECharts | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {
-      echartRef.current = echarts.init(chartRef.current);
+      setEchart(echarts.init(chartRef.current));
     }
   }, []);
 
   useEffect(() => {
-    echartRef.current?.setOption(option, false);
-  }, [option]);
+    if (!echart) return;
+
+    echart.setOption(option, false);
+
+    if (option.selectTooltip) {
+      echart.on('click', function (params) {
+        option.selectTooltip(params);
+      });
+    }
+
+    if (option.mainColor && option.dimmedColor) {
+      echart.on('highlight', function () {
+        echart.setOption(
+          {
+            series: [
+              {
+                itemStyle: {
+                  color: option.dimmedColor,
+                },
+                lineStyle: {
+                  color: option.dimmedColor,
+                },
+              },
+            ],
+          },
+          false
+        );
+      });
+      echart.on('downplay', function (params) {
+        echart.setOption(
+          {
+            series: [
+              {
+                itemStyle: {
+                  color: option.mainColor,
+                },
+                lineStyle: {
+                  color: option.mainColor,
+                },
+              },
+            ],
+          },
+          false
+        );
+      });
+    }
+  }, [echart, option]);
 
   return <div ref={chartRef} className="h-80 w-full"></div>;
 };
