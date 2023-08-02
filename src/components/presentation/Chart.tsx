@@ -5,9 +5,10 @@ import * as echarts from 'echarts';
 
 type Props = {
   option: any;
+  width: number;
 };
 
-const Chart = ({ option }: Props) => {
+const Chart = ({ option, width }: Props) => {
   const chartRef = useRef(null);
   const [echart, setEchart] = useState<echarts.ECharts | null>(null);
 
@@ -69,7 +70,15 @@ const Chart = ({ option }: Props) => {
     }
   }, [echart, option]);
 
-  return <div ref={chartRef} className="h-80 w-full"></div>;
+  useEffect(() => {
+    if (!echart) return;
+
+    echart.resize();
+  }, [echart, width]);
+
+  return (
+    <div ref={chartRef} className="h-80" style={{ width: `${width}px` }}></div>
+  );
 };
 
 export default Chart;
