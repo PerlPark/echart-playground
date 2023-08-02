@@ -11,6 +11,10 @@ import useToggle from '@/useToggle';
 import { useState } from 'react';
 
 import null2집계중 from '@/utils';
+import barChartOption3 from '@/configs/bar3';
+import pieChartOption1 from '@/configs/pie1';
+import pieChartOption2 from '@/configs/pie2';
+import candleChartOption1 from '@/configs/candle1';
 
 const Presentation = () => {
   const [color, setColor] = useState('#f68709');
@@ -109,6 +113,22 @@ const Presentation = () => {
             },
           })}
         />
+      </div>
+      <div className="border rounded-lg">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={barChartOption3} />
+      </div>
+      <div className="border rounded-lg">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={pieChartOption1} />
+      </div>
+      <div className="border rounded-lg">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={pieChartOption2} />
+      </div>
+      <div className="border rounded-lg">
+        <div className="flex gap-4 items-center h-14"></div>
+        <Chart option={candleChartOption1} />
       </div>
     </div>
   );
