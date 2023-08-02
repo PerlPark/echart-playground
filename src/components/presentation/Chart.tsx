@@ -23,12 +23,14 @@ const Chart = ({ option }: Props) => {
     echart.setOption(option, false);
 
     if (option.selectTooltip) {
+      echart.off('click');
       echart.on('click', function (params) {
         option.selectTooltip(params);
       });
     }
 
     if (option.mainColor && option.dimmedColor) {
+      echart.off('highlight');
       echart.on('highlight', function () {
         echart.setOption(
           {
@@ -46,6 +48,7 @@ const Chart = ({ option }: Props) => {
           false
         );
       });
+      echart.off('downplay');
       echart.on('downplay', function (params) {
         echart.setOption(
           {
