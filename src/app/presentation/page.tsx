@@ -130,9 +130,9 @@ const Presentation = () => {
         <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={barChartOption1({})} />
         </div>
-        <div className="border rounded-lg flex flex-col justify-end">
+        <div className="border rounded-lg flex flex-col justify-end relative">
           {tooltip.show && (
-            <div className="absolute bg-slate-600 text-white px-3 py-2 z-10 rounded">
+            <div className="absolute top-0 w-full bg-slate-600 text-white px-3 py-2 z-10 rounded">
               {tooltip.name}
               <br />
               {tooltip.value}
