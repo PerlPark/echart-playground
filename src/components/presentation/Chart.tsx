@@ -77,7 +77,7 @@ const Chart = ({ option, width }: Props) => {
   }, [echart, width]);
 
   return (
-    <div ref={chartRef} className="h-80" style={{ width: `${width}px` }}></div>
+    <div ref={chartRef} className="h-72" style={{ width: `${width}px` }}></div>
   );
 };
 

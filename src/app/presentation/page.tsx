@@ -15,6 +15,7 @@ import barChartOption3 from '@/configs/bar3';
 import pieChartOption1 from '@/configs/pie1';
 import pieChartOption2 from '@/configs/pie2';
 import candleChartOption1 from '@/configs/candle1';
+import candleChartOption2 from '@/configs/candle2';
 
 const Presentation = () => {
   const [width, setWidth] = useState(375);
@@ -175,6 +176,9 @@ const Presentation = () => {
         </div>
         <div className="border rounded-lg">
           <Chart width={width} option={candleChartOption1} />
+        </div>
+        <div className="border rounded-lg">
+          <Chart width={width} option={candleChartOption2} />
         </div>
       </div>
     </div>
