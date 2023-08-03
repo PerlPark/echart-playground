@@ -2,7 +2,7 @@
 
 import Chart from '@/components/presentation/Chart';
 import barChartOption1 from '@/configs/bar1';
-import barChartOption2 from '@/configs/bar2';
+import barChartOption2, { datas } from '@/configs/bar2';
 import lineChartOption1 from '@/configs/line1';
 import lineChartOption2 from '@/configs/line2';
 import lineChartOption3 from '@/configs/line3';
@@ -10,7 +10,6 @@ import lineChartOption4 from '@/configs/line4';
 import useToggle from '@/useToggle';
 import { useState } from 'react';
 
-import null2집계중 from '@/utils';
 import barChartOption3 from '@/configs/bar3';
 import pieChartOption1 from '@/configs/pie1';
 import pieChartOption2 from '@/configs/pie2';
@@ -24,12 +23,6 @@ const Presentation = () => {
   const [color2, setColor2] = useState('#b177f8');
   const [isSmooth, toggleIsSmooth] = useToggle();
 
-  const rawData1 = [2, 5, 5, 3, 4, 1, null];
-  const rawData2 = [3, 4, 6, 3, 4, null, null];
-  const data1 = null2집계중(rawData1);
-  const data2 = null2집계중(rawData2);
-  const data3 = [2.5, 4.5, 5.5, 3.5, 4.5, 2, null];
-  const datas = [data1, data2, data3];
   const [tooltip, setTooltip] = useState<any>({
     show: false,
     name: '',
@@ -147,11 +140,9 @@ const Presentation = () => {
           )}
           <Chart
             width={width}
-            option={barChartOption2({
-              data1,
-              data2,
-              data3,
-              selectTooltip: (params) => {
+            option={barChartOption2({})}
+            events={(echarts) => {
+              const selectTooltip = (params: any) => {
                 const valueData = datas[params.seriesIndex][params.dataIndex];
                 const value =
                   typeof valueData === 'number' ? valueData : '집계중입니다.';
@@ -161,8 +152,13 @@ const Presentation = () => {
                   name: params.seriesName + params.name,
                   value,
                 });
-              },
-            })}
+              };
+
+              echarts.off('click');
+              echarts.on('click', function (params) {
+                selectTooltip(params);
+              });
+            }}
           />
         </div>
         <div className="border rounded-lg">

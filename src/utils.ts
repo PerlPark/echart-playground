@@ -1,24 +1,16 @@
-const sum = (data: (number | null)[]) =>
-  data.reduce<number>((p, c) => (c !== null ? p + c : p), 0);
-
 export type 집계중List = (
   | number
-  | {
-      value: number;
-      itemStyle: {
-        color: string;
-      };
-      label: {
-        show: boolean;
-        position: string;
-        color: string;
-        fontSize: number;
-        formatter: string;
-      };
-    }
+  | { value: number; itemStyle: { color: string } }
+  | null
 )[];
 
-const null2집계중 = (data: (number | null)[]): 집계중List =>
+const sum = (data: 집계중List) =>
+  data.reduce<number>(
+    (p, c) => (c !== null ? p + (typeof c === 'object' ? c.value : c) : p),
+    0
+  );
+
+const null2집계중 = (data: 집계중List): 집계중List =>
   data.map((v) =>
     v !== null
       ? v

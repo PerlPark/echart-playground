@@ -6,9 +6,10 @@ import * as _echarts from 'echarts';
 type Props = {
   option: any;
   width: number;
+  events?: (chart: _echarts.ECharts) => void;
 };
 
-const Chart = ({ option, width }: Props) => {
+const Chart = ({ option, width, events }: Props) => {
   const chartRef = useRef(null);
   const [echarts, setEcharts] = useState<_echarts.ECharts | null>(null);
 
@@ -75,6 +76,12 @@ const Chart = ({ option, width }: Props) => {
       echarts.resize();
     }
   }, [echarts, width]);
+
+  useEffect(() => {
+    if (echarts && events) {
+      events(echarts);
+    }
+  }, [echarts, events]);
 
   return (
     <div ref={chartRef} className="h-72" style={{ width: `${width}px` }}></div>
