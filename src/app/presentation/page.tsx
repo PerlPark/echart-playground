@@ -118,19 +118,19 @@ const Presentation = () => {
             </div>
           )}
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={lineChartOption2({})} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={lineChartOption3({})} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={lineChartOption4({})} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={barChartOption1({})} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           {tooltip.show && (
             <div className="absolute bg-slate-600 text-white px-3 py-2 z-10 rounded">
               {tooltip.name}
@@ -165,19 +165,19 @@ const Presentation = () => {
             }}
           />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={barChartOption3} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={pieChartOption1} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={pieChartOption2} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={candleChartOption1} />
         </div>
-        <div className="border rounded-lg">
+        <div className="border rounded-lg flex flex-col justify-end">
           <Chart width={width} option={candleChartOption2} />
         </div>
       </div>
