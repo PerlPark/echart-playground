@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import * as echarts from 'echarts';
+import * as _echarts from 'echarts';
 
 type Props = {
   option: any;
@@ -10,30 +10,30 @@ type Props = {
 
 const Chart = ({ option, width }: Props) => {
   const chartRef = useRef(null);
-  const [echart, setEchart] = useState<echarts.ECharts | null>(null);
+  const [echarts, setEcharts] = useState<_echarts.ECharts | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {
-      setEchart(echarts.init(chartRef.current));
+      setEcharts(_echarts.init(chartRef.current));
     }
   }, []);
 
   useEffect(() => {
-    if (!echart) return;
+    if (!echarts) return;
 
-    echart.setOption(option, false);
+    echarts.setOption(option, false);
 
     if (option.selectTooltip) {
-      echart.off('click');
-      echart.on('click', function (params) {
+      echarts.off('click');
+      echarts.on('click', function (params) {
         option.selectTooltip(params);
       });
     }
 
     if (option.mainColor && option.dimmedColor) {
-      echart.off('highlight');
-      echart.on('highlight', function () {
-        echart.setOption(
+      echarts.off('highlight');
+      echarts.on('highlight', function () {
+        echarts.setOption(
           {
             series: [
               {
@@ -49,9 +49,9 @@ const Chart = ({ option, width }: Props) => {
           false
         );
       });
-      echart.off('downplay');
-      echart.on('downplay', function (params) {
-        echart.setOption(
+      echarts.off('downplay');
+      echarts.on('downplay', function (params) {
+        echarts.setOption(
           {
             series: [
               {
@@ -68,13 +68,13 @@ const Chart = ({ option, width }: Props) => {
         );
       });
     }
-  }, [echart, option]);
+  }, [echarts, option]);
 
   useEffect(() => {
-    if (!echart) return;
-
-    echart.resize();
-  }, [echart, width]);
+    if (echarts) {
+      echarts.resize();
+    }
+  }, [echarts, width]);
 
   return (
     <div ref={chartRef} className="h-72" style={{ width: `${width}px` }}></div>
