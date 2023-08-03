@@ -145,7 +145,11 @@ const Presentation = () => {
               const selectTooltip = (params: any) => {
                 const valueData = datas[params.seriesIndex][params.dataIndex];
                 const value =
-                  typeof valueData === 'number' ? valueData : '집계중입니다.';
+                  typeof valueData === 'number'
+                    ? valueData
+                    : valueData?.label?.formatter === '집계중'
+                    ? '집계중입니다.'
+                    : valueData?.value;
 
                 setTooltip({
                   show: true,

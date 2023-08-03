@@ -1,6 +1,18 @@
 export type 집계중List = (
   | number
-  | { value: number; itemStyle: { color: string } }
+  | {
+      value: number;
+      itemStyle: {
+        color: string;
+      };
+      label?: {
+        show: boolean;
+        position: string;
+        color: string;
+        fontSize: number;
+        formatter: string;
+      };
+    }
   | null
 )[];
 
