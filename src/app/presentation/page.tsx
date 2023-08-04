@@ -29,6 +29,7 @@ const Presentation = () => {
     name: '',
     value: 0,
   });
+  const [textOpacity, setTextOpacity] = useState(1);
 
   const [chart1Option, toggleChart1Option] = useToggle();
 
@@ -117,7 +118,7 @@ const Presentation = () => {
           )}
           <Chart
             width={width}
-            option={barChartOption2({})}
+            option={barChartOption2({ textOpacity })}
             events={(echarts) => {
               const selectTooltip = (params: any) => {
                 const valueData = datas[params.seriesIndex][params.dataIndex];
@@ -138,7 +139,14 @@ const Presentation = () => {
               echarts.off('mouseover');
               echarts.on('mouseover', function (params) {
                 if (params.componentSubType === 'bar') {
+                  setTextOpacity(0.3);
                   selectTooltip(params);
+                }
+              });
+              echarts.off('mouseout');
+              echarts.on('mouseout', function (params) {
+                if (params.componentSubType === 'bar') {
+                  setTextOpacity(1);
                 }
               });
               echarts.off('globalout');

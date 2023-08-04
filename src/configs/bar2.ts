@@ -2,6 +2,7 @@ import null2집계중 from '@/utils';
 
 type Params = {
   isSmooth?: boolean;
+  textOpacity: number;
 };
 
 const color1 = '#5570c6';
@@ -60,7 +61,7 @@ export const series = (
   },
 ];
 
-const barChartOption2 = ({ isSmooth = false }: Params) => ({
+const barChartOption2 = ({ isSmooth = false, textOpacity }: Params) => ({
   xAxis: {
     type: 'category',
     data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
@@ -69,6 +70,35 @@ const barChartOption2 = ({ isSmooth = false }: Params) => ({
     type: 'value',
   },
   legend: {},
+  graphic: {
+    id: 'grrr',
+    elements: [
+      {
+        type: 'text',
+        left: '71.3%',
+        y: 126,
+        style: {
+          text: '집계중',
+          textAlign: 'center',
+          fill: '#90A4AE',
+          font: '12px',
+          opacity: textOpacity,
+        },
+      },
+      {
+        type: 'text',
+        left: '80%',
+        y: 126,
+        style: {
+          text: '집계중',
+          textAlign: 'center',
+          fill: '#90A4AE',
+          font: '12px',
+          opacity: textOpacity,
+        },
+      },
+    ],
+  },
   series: series(isSmooth, 'self'),
 });
 

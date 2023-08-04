@@ -32,7 +32,7 @@ const null2집계중 = (data: 집계중List): 집계중List =>
             color: '#EEF1F3',
           },
           label: {
-            show: true,
+            show: false,
             position: 'top',
             color: '#90A4AE',
             fontSize: 10,
