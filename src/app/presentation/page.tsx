@@ -141,8 +141,8 @@ const Presentation = () => {
                   selectTooltip(params);
                 }
               });
-              echarts.off('mouseout');
-              echarts.on('mouseout', function (params) {
+              echarts.off('globalout');
+              echarts.on('globalout', function (params) {
                 setTooltip({
                   show: false,
                   name: '',
