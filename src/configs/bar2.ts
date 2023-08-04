@@ -31,13 +31,16 @@ const data3 = [2.5, 4.5, 5.5, 3.5, 4.5, 2, null];
 
 export const datas = [data1, data2, data3];
 
-export const series = (isSmooth: boolean = false) => [
+export const series = (
+  isSmooth: boolean = false,
+  emphasis: 'none' | 'series' | 'self'
+) => [
   {
     data: data1,
     name: '파랑',
     type: 'bar',
     emphasis: {
-      focus: 'series',
+      focus: emphasis,
     },
   },
   {
@@ -45,7 +48,7 @@ export const series = (isSmooth: boolean = false) => [
     name: '초록',
     type: 'bar',
     emphasis: {
-      focus: 'series',
+      focus: emphasis,
     },
   },
   {
@@ -66,7 +69,7 @@ const barChartOption2 = ({ isSmooth = false }: Params) => ({
     type: 'value',
   },
   legend: {},
-  series: series(isSmooth),
+  series: series(isSmooth, 'self'),
 });
 
 export default barChartOption2;
