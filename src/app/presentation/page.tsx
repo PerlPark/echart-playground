@@ -135,9 +135,19 @@ const Presentation = () => {
                 });
               };
 
-              echarts.off('click');
-              echarts.on('click', function (params) {
-                selectTooltip(params);
+              echarts.off('mouseover');
+              echarts.on('mouseover', function (params) {
+                if (params.componentSubType === 'bar') {
+                  selectTooltip(params);
+                }
+              });
+              echarts.off('mouseout');
+              echarts.on('mouseout', function (params) {
+                setTooltip({
+                  show: false,
+                  name: '',
+                  value: 0,
+                });
               });
             }}
           />

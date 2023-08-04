@@ -24,13 +24,6 @@ const Chart = ({ option, width, events }: Props) => {
 
     echarts.setOption(option, false);
 
-    if (option.selectTooltip) {
-      echarts.off('click');
-      echarts.on('click', function (params) {
-        option.selectTooltip(params);
-      });
-    }
-
     if (option.mainColor && option.dimmedColor) {
       echarts.off('highlight');
       echarts.on('highlight', function () {
