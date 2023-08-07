@@ -21,7 +21,6 @@ const transparent = (data: number[], stack: string) => ({
     },
   },
   data: data,
-  barGap: '-100%',
 });
 
 const candleChartOption2 = {
@@ -31,15 +30,14 @@ const candleChartOption2 = {
   yAxis: {
     type: 'value',
   },
-  tooltip: {},
   series: [
     transparent(lowest, 'low/high'),
     {
       type: 'bar',
       stack: 'low/high',
       data: lowest.map((v, i) => highest[i] - v),
-      barGap: '-100%',
       barWidth: 6,
+      silent: true,
       itemStyle: {
         color: '#BAFFD5',
         borderRadius: 5,
