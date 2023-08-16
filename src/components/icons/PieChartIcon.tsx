@@ -17,7 +17,7 @@ const PieChartIcon = () => {
         <g
           id="pie-(2)"
           transform="translate(0.000000, -0.612903)"
-          fill="#000000"
+          fill="currentColor"
           fillRule="nonzero"
         >
           <path
