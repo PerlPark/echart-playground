@@ -7,6 +7,7 @@ import PieChartIcon from '../icons/PieChartIcon';
 import useToggle from '@/useToggle';
 import LineChartIcon from '../icons/LineChartIcon';
 import CandlestickChartIcon from '../icons/CandlestickChartIcon';
+import classNames from 'classnames';
 
 const Options = () => {
   const [width, setWidth] = useRecoilState(widthState);
@@ -34,57 +35,88 @@ const Options = () => {
           />
           px
         </div>
-      </div>
-      <div className="m-6 p-5 bg-slate-100 rounded-md">
+        <hr className="my-5 border-slate-300" />
         <ul className="flex gap-4">
-          <li className="w-40">
-            <input
-              type="checkbox"
-              className="peer hidden"
-              checked={lineChart}
-            />
+          <li>
             <button
               type="button"
               onClick={toggleLineChart}
-              className="transition peer-checked:border-slate-500 w-full peer-checked:font-medium peer-checked:text-slate-600 bg-white border border-slate-300 text-slate-400 rounded flex items-center gap-2 py-1.5 px-3"
+              className={classNames(
+                'transition w-full flex items-center gap-2 py-1.5 px-3',
+                lineChart
+                  ? 'border-slate-500 font-medium text-slate-600'
+                  : 'border-slate-300 text-slate-400'
+              )}
             >
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
+                checked={lineChart}
+                readOnly
+              />
               <LineChartIcon />
               Line
             </button>
           </li>
-          <li className="w-40">
-            <input type="checkbox" className="peer hidden" checked={barChart} />
+          <li>
             <button
               type="button"
               onClick={toggleBarChart}
-              className="transition peer-checked:border-slate-500 w-full peer-checked:font-medium peer-checked:text-slate-600 bg-white border border-slate-300 text-slate-400 rounded flex items-center gap-2 py-1.5 px-3"
+              className={classNames(
+                'transition w-full  flex items-center gap-2 py-1.5 px-3',
+                barChart
+                  ? 'border-slate-500 font-medium text-slate-600'
+                  : 'border-slate-300 text-slate-400'
+              )}
             >
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
+                checked={barChart}
+                readOnly
+              />
               <BarChartIcon />
               Bar
             </button>
           </li>
-          <li className="w-40">
-            <input type="checkbox" className="peer hidden" checked={pieChart} />
+          <li>
             <button
               type="button"
               onClick={togglePieChart}
-              className="transition peer-checked:border-slate-500 w-full peer-checked:font-medium peer-checked:text-slate-600 bg-white border border-slate-300 text-slate-400 rounded flex items-center gap-2 py-1.5 px-3"
+              className={classNames(
+                'transition w-full flex items-center gap-2 py-1.5 px-3',
+                pieChart
+                  ? 'border-slate-500 font-medium text-slate-600'
+                  : 'border-slate-300 text-slate-400'
+              )}
             >
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
+                checked={pieChart}
+                readOnly
+              />
               <PieChartIcon />
               Pie
             </button>
           </li>
-          <li className="w-40">
-            <input
-              type="checkbox"
-              className="peer hidden"
-              checked={candleChart}
-            />
+          <li>
             <button
               type="button"
               onClick={toggleCandleChart}
-              className="transition peer-checked:border-slate-500 w-full peer-checked:font-medium peer-checked:text-slate-600 bg-white border border-slate-300 text-slate-400 rounded flex items-center gap-2 py-1.5 px-3"
+              className={classNames(
+                'transition w-full flex items-center gap-2 py-1.5 px-3',
+                candleChart
+                  ? 'border-slate-500 font-medium text-slate-600'
+                  : 'border-slate-300 text-slate-400'
+              )}
             >
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
+                checked={candleChart}
+                readOnly
+              />
               <CandlestickChartIcon />
               Candlestick
             </button>
