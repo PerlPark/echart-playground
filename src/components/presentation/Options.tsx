@@ -1,21 +1,23 @@
 'use client';
 
-import { widthState } from '@/recoil/options';
+import { showState, widthState } from '@/recoil/options';
 import { useRecoilState } from 'recoil';
 import BarChartIcon from '../icons/BarChartIcon';
 import PieChartIcon from '../icons/PieChartIcon';
-import useToggle from '@/useToggle';
 import LineChartIcon from '../icons/LineChartIcon';
 import CandlestickChartIcon from '../icons/CandlestickChartIcon';
 import classNames from 'classnames';
 
 const Options = () => {
   const [width, setWidth] = useRecoilState(widthState);
+  const [show, setShow] = useRecoilState(showState);
 
-  const [lineChart, toggleLineChart] = useToggle(true);
-  const [barChart, toggleBarChart] = useToggle(true);
-  const [pieChart, togglePieChart] = useToggle(true);
-  const [candleChart, toggleCandleChart] = useToggle(true);
+  const toggleShow = (type: keyof typeof show) => {
+    setShow((v) => ({
+      ...v,
+      [type]: !v[type],
+    }));
+  };
 
   return (
     <div>
@@ -40,10 +42,10 @@ const Options = () => {
           <li>
             <button
               type="button"
-              onClick={toggleLineChart}
+              onClick={() => toggleShow('line')}
               className={classNames(
                 'transition w-full flex items-center gap-2 py-1.5 px-3',
-                lineChart
+                show.line
                   ? 'border-slate-500 font-medium text-slate-600'
                   : 'border-slate-300 text-slate-400'
               )}
@@ -51,7 +53,7 @@ const Options = () => {
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
-                checked={lineChart}
+                checked={show.line}
                 readOnly
               />
               <LineChartIcon />
@@ -61,10 +63,10 @@ const Options = () => {
           <li>
             <button
               type="button"
-              onClick={toggleBarChart}
+              onClick={() => toggleShow('bar')}
               className={classNames(
                 'transition w-full  flex items-center gap-2 py-1.5 px-3',
-                barChart
+                show.bar
                   ? 'border-slate-500 font-medium text-slate-600'
                   : 'border-slate-300 text-slate-400'
               )}
@@ -72,7 +74,7 @@ const Options = () => {
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
-                checked={barChart}
+                checked={show.bar}
                 readOnly
               />
               <BarChartIcon />
@@ -82,10 +84,10 @@ const Options = () => {
           <li>
             <button
               type="button"
-              onClick={togglePieChart}
+              onClick={() => toggleShow('pie')}
               className={classNames(
                 'transition w-full flex items-center gap-2 py-1.5 px-3',
-                pieChart
+                show.pie
                   ? 'border-slate-500 font-medium text-slate-600'
                   : 'border-slate-300 text-slate-400'
               )}
@@ -93,7 +95,7 @@ const Options = () => {
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
-                checked={pieChart}
+                checked={show.pie}
                 readOnly
               />
               <PieChartIcon />
@@ -103,10 +105,10 @@ const Options = () => {
           <li>
             <button
               type="button"
-              onClick={toggleCandleChart}
+              onClick={() => toggleShow('candle')}
               className={classNames(
                 'transition w-full flex items-center gap-2 py-1.5 px-3',
-                candleChart
+                show.candle
                   ? 'border-slate-500 font-medium text-slate-600'
                   : 'border-slate-300 text-slate-400'
               )}
@@ -114,7 +116,7 @@ const Options = () => {
               <input
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-slate-600 focus:ring-slate-600"
-                checked={candleChart}
+                checked={show.candle}
                 readOnly
               />
               <CandlestickChartIcon />
