@@ -4,7 +4,7 @@ import SettingButton from './SettingButton';
 import useToggle from '@/useToggle';
 import { useState } from 'react';
 
-const LineChart1 = () => {
+const LineChart1 = ({ className }: { className: string }) => {
   const [chart1Option, toggleChart1Option] = useToggle();
 
   const [color, setColor] = useState('#f68709');
@@ -12,7 +12,7 @@ const LineChart1 = () => {
   const [isSmooth, toggleIsSmooth] = useToggle();
 
   return (
-    <div className="border rounded-lg relative">
+    <div className={className}>
       <div className="text-right">
         <SettingButton onClick={() => toggleChart1Option()} />
       </div>
