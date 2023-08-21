@@ -5,9 +5,12 @@ const rawData1 = [2, 5, 5, 1, null, 3, 4];
 
 const data1 = null2집계중(rawData1);
 
-const barChartOption1 = ({ isSmooth = false }: any) => ({
-  mainColor: '#5570c6',
-  dimmedColor: '#c0c8e9',
+type Props = {
+  isSmooth?: boolean;
+  color: string;
+};
+
+const barChartOption1 = ({ isSmooth = false, color }: Props) => ({
   xAxis: {
     type: 'category',
     data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
@@ -27,11 +30,11 @@ const barChartOption1 = ({ isSmooth = false }: any) => ({
       data: data1,
       type: 'bar',
       itemStyle: {
-        color: '#5570c6',
+        color: color,
       },
       emphasis: {
         itemStyle: {
-          color: '#5570c6',
+          color: color,
         },
       },
     },

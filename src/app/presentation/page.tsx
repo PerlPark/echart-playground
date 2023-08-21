@@ -48,7 +48,47 @@ const Presentation = () => {
       {show.bar && (
         <>
           <div className="border rounded-lg flex flex-col justify-end">
-            <Chart option={barChartOption1({})} />
+            <Chart
+              option={barChartOption1({ color: '#5570c6' })}
+              events={(echarts) => {
+                echarts.off('highlight');
+                echarts.on('highlight', function () {
+                  echarts.setOption(
+                    {
+                      series: [
+                        {
+                          itemStyle: {
+                            color: '#c0c8e9',
+                          },
+                          lineStyle: {
+                            color: '#c0c8e9',
+                          },
+                        },
+                      ],
+                    },
+                    false
+                  );
+                });
+                echarts.off('downplay');
+                echarts.on('downplay', function () {
+                  echarts.setOption(
+                    {
+                      series: [
+                        {
+                          itemStyle: {
+                            color: '#5570c6',
+                          },
+                          lineStyle: {
+                            color: '#5570c6',
+                          },
+                        },
+                      ],
+                    },
+                    false
+                  );
+                });
+              }}
+            />
           </div>
           <div className="border rounded-lg flex flex-col justify-end relative">
             {tooltip.show && (

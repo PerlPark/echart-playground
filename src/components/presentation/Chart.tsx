@@ -25,52 +25,7 @@ const Chart = ({ option, events }: Props) => {
     if (!echarts) return;
 
     echarts.setOption(option, false);
-
-    if (option.mainColor && option.dimmedColor) {
-      echarts.off('highlight');
-      echarts.on('highlight', function () {
-        echarts.setOption(
-          {
-            series: [
-              {
-                itemStyle: {
-                  color: option.dimmedColor,
-                },
-                lineStyle: {
-                  color: option.dimmedColor,
-                },
-              },
-            ],
-          },
-          false
-        );
-      });
-      echarts.off('downplay');
-      echarts.on('downplay', function (params) {
-        echarts.setOption(
-          {
-            series: [
-              {
-                itemStyle: {
-                  color: option.mainColor,
-                },
-                lineStyle: {
-                  color: option.mainColor,
-                },
-              },
-            ],
-          },
-          false
-        );
-      });
-    }
   }, [echarts, option]);
-
-  useEffect(() => {
-    if (echarts) {
-      echarts.resize();
-    }
-  }, [echarts, width]);
 
   useEffect(() => {
     if (echarts && events) {
@@ -79,7 +34,7 @@ const Chart = ({ option, events }: Props) => {
   }, [echarts, events]);
 
   return (
-    <div ref={chartRef} className="h-72" style={{ width: `${width}px` }}></div>
+    <div ref={chartRef} className="h-72" style={{ width: `${width}px` }} />
   );
 };
 
