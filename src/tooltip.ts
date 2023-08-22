@@ -1,8 +1,13 @@
-type Data = { dataIndex: number; axisValue: string; data: any[] }[];
+import {
+  EChartsOption,
+  TooltipComponentFormatterCallback,
+  TooltipComponentFormatterCallbackParams,
+} from 'echarts';
 
-type Formatter = (obj: Data) => string;
+type Formatter =
+  TooltipComponentFormatterCallback<TooltipComponentFormatterCallbackParams>;
 
-const tooltipConfig = (formatter: Formatter) => ({
+const tooltipConfig = (formatter: Formatter): EChartsOption['tooltip'] => ({
   trigger: 'axis',
   formatter: formatter,
   position: function () {

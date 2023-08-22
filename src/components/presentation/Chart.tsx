@@ -6,7 +6,7 @@ import { widthState } from '@/recoil/options';
 import { useRecoilState } from 'recoil';
 
 type Props = {
-  option: any;
+  option: _echarts.EChartsOption;
   events?: (chart: _echarts.ECharts) => void;
 };
 

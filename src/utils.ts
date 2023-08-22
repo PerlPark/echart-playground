@@ -1,28 +1,12 @@
-export type 집계중List = (
-  | number
-  | {
-      value: number;
-      itemStyle: {
-        color: string;
-      };
-      label?: {
-        show: boolean;
-        position: string;
-        color: string;
-        fontSize: number;
-        formatter: string;
-      };
-    }
-  | null
-)[];
+import { BarSeriesOption } from 'echarts';
 
-const sum = (data: 집계중List) =>
+const sum = (data: (number | null | { value: number })[]) =>
   data.reduce<number>(
     (p, c) => (c !== null ? p + (typeof c === 'object' ? c.value : c) : p),
     0
   );
 
-const null2집계중 = (data: 집계중List): 집계중List =>
+const null2집계중 = (data: (number | null)[]): BarSeriesOption['data'] =>
   data.map((v) =>
     v !== null
       ? v
