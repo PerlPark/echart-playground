@@ -1,4 +1,6 @@
-const pieChartOption1 = {
+import { EChartsOption } from 'echarts';
+
+const pieChartOption1: EChartsOption = {
   tooltip: {
     trigger: 'item',
   },

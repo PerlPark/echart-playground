@@ -1,4 +1,5 @@
 import null2집계중 from '@/utils';
+import { EChartsOption } from 'echarts';
 
 type Params = {
   isSmooth?: boolean;
@@ -28,14 +29,31 @@ const rawData2 = [
 ];
 const data1 = null2집계중(rawData1);
 const data2 = null2집계중(rawData2);
-const data3 = [2.5, 4.5, 5.5, 3.5, 4.5, 2, null];
+const data3 = [2.5, 4.5, 5.5, 3.5, 4.5, 2];
 
-export const datas = [data1, data2, data3];
+type DataType =
+  | number
+  | {
+      value: number;
+      itemStyle: { color: string };
+      label?:
+        | {
+            show: boolean;
+            position: string;
+            color: string;
+            fontSize: number;
+            formatter: string;
+          }
+        | undefined;
+    }
+  | null;
+
+export const data = [data1, data2, data3] as DataType[][];
 
 export const series = (
   isSmooth: boolean = false,
   emphasis: 'none' | 'series' | 'self'
-) => [
+): EChartsOption['series'] => [
   {
     data: data1,
     name: '파랑',
@@ -61,7 +79,10 @@ export const series = (
   },
 ];
 
-const barChartOption2 = ({ isSmooth = false, textOpacity }: Params) => ({
+const barChartOption2 = ({
+  isSmooth = false,
+  textOpacity,
+}: Params): EChartsOption => ({
   xAxis: {
     type: 'category',
     data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
@@ -71,7 +92,6 @@ const barChartOption2 = ({ isSmooth = false, textOpacity }: Params) => ({
   },
   legend: {},
   graphic: {
-    id: 'grrr',
     elements: [
       {
         type: 'text',
@@ -79,7 +99,6 @@ const barChartOption2 = ({ isSmooth = false, textOpacity }: Params) => ({
         y: 126,
         style: {
           text: '집계중',
-          textAlign: 'center',
           fill: '#90A4AE',
           font: '12px',
           opacity: textOpacity,
@@ -91,7 +110,6 @@ const barChartOption2 = ({ isSmooth = false, textOpacity }: Params) => ({
         y: 126,
         style: {
           text: '집계중',
-          textAlign: 'center',
           fill: '#90A4AE',
           font: '12px',
           opacity: textOpacity,

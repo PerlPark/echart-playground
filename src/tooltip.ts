@@ -1,15 +1,16 @@
-import {
-  EChartsOption,
-  TooltipComponentFormatterCallback,
-  TooltipComponentFormatterCallbackParams,
-} from 'echarts';
+import { TooltipComponentOption } from 'echarts';
+import { CallbackDataParams } from 'echarts/types/src/util/types';
 
-type Formatter =
-  TooltipComponentFormatterCallback<TooltipComponentFormatterCallbackParams>;
-
-const tooltipConfig = (formatter: Formatter): EChartsOption['tooltip'] => ({
+const tooltipConfig = (
+  formatter: (params: CallbackDataParams[]) => string
+): TooltipComponentOption => ({
   trigger: 'axis',
-  formatter: formatter,
+  formatter: (params) => {
+    if (Array.isArray(params)) {
+      return formatter(params);
+    }
+    return '데이터가 없습니다.';
+  },
   position: function () {
     return [0, -50];
   },

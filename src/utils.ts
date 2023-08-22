@@ -6,7 +6,9 @@ const sum = (data: (number | null | { value: number })[]) =>
     0
   );
 
-const null2집계중 = (data: (number | null)[]): BarSeriesOption['data'] =>
+const null2집계중 = (
+  data: (number | { value: number; itemStyle: { color: string } } | null)[]
+): BarSeriesOption['data'] =>
   data.map((v) =>
     v !== null
       ? v

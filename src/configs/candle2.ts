@@ -1,3 +1,5 @@
+import { EChartsOption } from 'echarts';
+
 const lowest = [10, 30, 23, 5, 10, 30, 23, 5, 10, 30, 23, 5, 10, 30, 23, 5];
 const open = [20, 40, 36, 15, 20, 40, 36, 15, 20, 40, 36, 15, 20, 40, 36, 15];
 const close = [34, 50, 42, 38, 34, 50, 42, 38, 34, 50, 42, 38, 34, 50, 42, 38];
@@ -23,7 +25,7 @@ const transparent = (data: number[], stack: string) => ({
   data: data,
 });
 
-const candleChartOption2 = {
+const candleChartOption2: EChartsOption = {
   xAxis: {
     type: 'category',
   },

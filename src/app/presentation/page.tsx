@@ -2,7 +2,7 @@
 
 import Chart from '@/components/presentation/Chart';
 import barChartOption1 from '@/configs/bar1';
-import barChartOption2, { datas } from '@/configs/bar2';
+import barChartOption2, { data } from '@/configs/bar2';
 import lineChartOption2 from '@/configs/line2';
 import lineChartOption3 from '@/configs/line3';
 import lineChartOption4 from '@/configs/line4';
@@ -17,6 +17,7 @@ import LineChart1 from '@/components/presentation/LineChart1';
 import { showState } from '@/recoil/options';
 import { useRecoilState } from 'recoil';
 import classNames from 'classnames';
+import { ECElementEvent } from 'echarts';
 
 const Presentation = () => {
   const [tooltip, setTooltip] = useState<any>({
@@ -101,24 +102,28 @@ const Presentation = () => {
             <Chart
               option={barChartOption2({ textOpacity })}
               events={(echarts) => {
-                const selectTooltip = (params: any) => {
-                  const valueData = datas[params.seriesIndex][params.dataIndex];
-                  const value =
-                    typeof valueData === 'number'
-                      ? valueData
-                      : valueData?.label?.formatter === '집계중'
-                      ? '집계중입니다.'
-                      : valueData?.value;
+                const selectTooltip = (params: ECElementEvent) => {
+                  if (data && params.seriesIndex && params.dataIndex) {
+                    const valueData =
+                      data[params.seriesIndex]?.[params.dataIndex];
 
-                  setTooltip({
-                    show: true,
-                    name: params.seriesName + params.name,
-                    value,
-                  });
+                    const value =
+                      typeof valueData === 'number'
+                        ? valueData
+                        : valueData?.label?.formatter === '집계중'
+                        ? '집계중입니다.'
+                        : valueData?.value;
+
+                    setTooltip({
+                      show: true,
+                      name: params.seriesName + params.name,
+                      value,
+                    });
+                  }
                 };
 
                 echarts.off('mouseover');
-                echarts.on('mouseover', function (params) {
+                echarts.on('mouseover', function (params: ECElementEvent) {
                   if (params.componentSubType === 'bar') {
                     setTextOpacity(0.3);
                     selectTooltip(params);

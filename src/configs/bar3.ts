@@ -1,4 +1,6 @@
-const barChartOption3 = {
+import { EChartsOption } from 'echarts';
+
+const barChartOption3: EChartsOption = {
   tooltip: {
     trigger: 'axis',
     axisPointer: {

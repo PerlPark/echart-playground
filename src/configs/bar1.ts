@@ -22,13 +22,12 @@ const barChartOption1 = ({
   yAxis: {
     type: 'value',
   },
-  tooltip: tooltipConfig((obj: any) => {
-    return `${
-      obj[0].axisValue
-    }<br/><strong style="font-weight:600;color:#02FF9A">${
-      obj[0].data.label ? '집계중입니다.' : obj[0].value ?? '데이터가 없습니다.'
-    }</strong>`;
-  }),
+  tooltip: tooltipConfig(
+    (params) =>
+      `${params[0].name}<br/><strong style="font-weight:600;color:#02FF9A">${
+        params[0].value ?? '데이터가 없습니다.'
+      }</strong>`
+  ),
   series: [
     {
       data: data1,

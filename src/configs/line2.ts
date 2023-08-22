@@ -1,6 +1,7 @@
 import tooltipConfig from '@/tooltip';
+import { EChartsOption } from 'echarts';
 
-const lineChartOption2 = ({ isSmooth = false }: any) => ({
+const lineChartOption2 = ({ isSmooth = false }: any): EChartsOption => ({
   xAxis: {
     type: 'category',
     data: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월'],
@@ -9,14 +10,14 @@ const lineChartOption2 = ({ isSmooth = false }: any) => ({
     type: 'value',
   },
   tooltip: tooltipConfig(
-    (obj: any) =>
-      `${obj[0].axisValue}<br/><strong style="font-weight:600;color:#02FF9A">${
-        obj[0].value ?? '데이터가 없습니다.'
+    (params) =>
+      `${params[0].name}<br/><strong style="font-weight:600;color:#02FF9A">${
+        params[0].value ?? '데이터가 없습니다.'
       }</strong>`
   ),
   series: [
     {
-      data: [3, 4, 5, null, null, 2, 3, 3],
+      data: [3, 4, 5, 2, 3, 3],
       type: 'line',
       smooth: isSmooth,
       zlevel: 1,
