@@ -1,4 +1,5 @@
 import { EChartsOption } from 'echarts';
+import { BarSeriesOption } from 'echarts/types/dist/echarts';
 
 const lowest = [10, 30, 23, 5, 10, 30, 23, 5, 10, 30, 23, 5, 10, 30, 23, 5];
 const open = [20, 40, 36, 15, 20, 40, 36, 15, 20, 40, 36, 15, 20, 40, 36, 15];
@@ -7,7 +8,7 @@ const highest = [
   38, 60, 46, 42, 38, 60, 46, 42, 38, 60, 46, 42, 38, 60, 46, 42,
 ];
 
-const transparent = (data: number[], stack: string) => ({
+const transparent = (data: number[], stack: string): BarSeriesOption => ({
   name: 'Placeholder',
   type: 'bar',
   stack: stack,
