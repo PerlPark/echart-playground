@@ -1,4 +1,4 @@
-import null2집계중 from '@/utils';
+import convertAddingUp from '@/utils';
 import { EChartsOption } from 'echarts';
 
 type Params = {
@@ -27,8 +27,8 @@ const rawData2 = [
   null,
   null,
 ];
-const data1 = null2집계중(rawData1);
-const data2 = null2집계중(rawData2);
+const data1 = convertAddingUp(rawData1);
+const data2 = convertAddingUp(rawData2);
 const data3 = [2.5, 4.5, 5.5, 3.5, 4.5, 2];
 
 type DataType =

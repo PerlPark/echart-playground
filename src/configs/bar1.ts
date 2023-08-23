@@ -1,10 +1,10 @@
-import null2집계중 from '@/utils';
+import convertAddingUp from '@/utils';
 import tooltipConfig from '@/tooltip';
 import { EChartsOption } from 'echarts';
 
 const rawData1 = [2, 5, 5, 1, null, 3, 4];
 
-const data1 = null2집계중(rawData1);
+const data1 = convertAddingUp(rawData1);
 
 type Props = {
   isSmooth?: boolean;
